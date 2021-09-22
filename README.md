@@ -9,7 +9,7 @@
   --> 컴포넌트를 통해 HTML 활용도가 비약적으로 상승
 
 
-2. create-react-app 설치
+2. create-react-app 설치 (https://create-react-app.dev/docs/getting-started/)
   1) npx
     npx create-react-app my-app
   2) npm
