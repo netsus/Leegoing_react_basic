@@ -26,3 +26,9 @@
   * App은 function으로 작성되기도 하고, class로 작성되기도 한다.
     1. function App() {...} : App 함수가 컴포넌트로 쓰임.
     2. class App extends Component {...} : react의 Component 클래스를 상속받아 App 클래스 생성
+
+
+3. 배포하는 방법
+ 1) npm run build  -> build폴더에 불필요한 정보 모두 제거하고 파일 생성 (용량이 10%수준으로 줄어든다.)
+ 2) 웹서버에서 빌드할때, 최상위 루트 경로를 build경로로 지정해서 배포하면 된다.
+ --> npx serve -s build : build 디렉토리를 루트로 로컬상에서 배포 테스트해볼 수 있는 명령어.
