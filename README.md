@@ -14,3 +14,15 @@
     npx create-react-app my-app
   2) npm
     npm init react-app my-app
+
+
+3. React의 구조 : 크게 public 폴더와 src폴더로 구성.
+ 1) public 폴더 : index.html
+ index.html이 웹페이지에 보여지게되고, index.html의 id가 root인 div 태그가 핵심
+
+ 2) src 폴더 : index.js, App.js
+ index.js에서 App.js를 import하여 해당 내용을 index.html의 root에 정보를 뿌려준다.
+ App.js에서 App 컴포넌트에 내용이 작성된다.
+  * App은 function으로 작성되기도 하고, class로 작성되기도 한다.
+    1. function App() {...} : App 함수가 컴포넌트로 쓰임.
+    2. class App extends Component {...} : react의 Component 클래스를 상속받아 App 클래스 생성
