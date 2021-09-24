@@ -1,4 +1,4 @@
-import { Component } from 'react';
+import React from 'react';
 import logo from './logo.svg';
 import TOC from "./components/TOC"
 import Content from './components/Content';
@@ -7,7 +7,12 @@ import './App.css';
 
 function App() {
   const state = {
-    subject:{title:"REACT", sub:"For UI"}
+    subject:{title:"REACT", sub:"For UI"},
+    contents:[
+      {id:1, title:"HTMLa", desc: "HTML is for inforamtion."},
+      {id:2, title:"CSS", desc: "CSS is for design."},
+      {id:3, title:"JavaScript", desc: "JavaScript is for interactive."}
+    ]
   }
   return (
     <div className="App">
@@ -16,7 +21,7 @@ function App() {
         title={state.subject.title}
         sub={state.subject.sub}>
        </Subject>
-      <TOC></TOC>
+      <TOC data={state.contents}></TOC>
       <Content title="HTML" desc="HTML is HyperText Markup Language."></Content>
     </div>
   );
