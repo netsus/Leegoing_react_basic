@@ -1,11 +1,11 @@
 import logo from './logo.svg';
 import './App.css';
 
-function Subject() {
+function Subject(props) {
   return(
     <header>
-      <h1>WEB</h1>
-      world wide web!
+      <h1>{props.title}</h1>
+      {props.sub}
     </header>
   );
 }
@@ -22,11 +22,11 @@ function TOC() {
   );
 }
 
-function Content() {
+function Content(props) {
   return(
     <article>
-      <h2>HTML</h2>
-      HTML is HyperText Markup Language.
+      <h2>{props.title}</h2>
+      {props.desc}
     </article>
   );
 }
@@ -35,9 +35,9 @@ function App() {
   return (
     <div className="App">
       <img src={logo} className="App-logo" alt="logo" />
-      <Subject></Subject>
+      <Subject title="REACT" sub="For UI"></Subject>
       <TOC></TOC>
-      <Content></Content>
+      <Content title="HTML" desc="HTML is HyperText Markup Language."></Content>
     </div>
   );
 }
