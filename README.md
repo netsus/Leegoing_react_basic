@@ -33,3 +33,6 @@
  2) 웹서버에서 빌드할때, 최상위 루트 경로를 build경로로 지정해서 배포하면 된다.
  --> npx serve -s build : build 디렉토리를 루트로 로컬상에서 배포 테스트해볼 수 있는 명령어.
    * npm start는 public 디렉토리를 루트로 HTML을 띄운다.
+
+* React Developer Tools : https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi?hl=ko
+--> 리액트의 컴포넌트를 웹페이지 Inspect에서 볼 수 있게해주는 크롬 확장 프로그램
