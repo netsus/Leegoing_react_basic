@@ -5,6 +5,7 @@ function Subject(props) {
         <a href="/" 
         onClick={(e) => {
           e.preventDefault();
+          props.setMode('read');
         }}>{props.title}</a>
       </h1>
       {props.sub}

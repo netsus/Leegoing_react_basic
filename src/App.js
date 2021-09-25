@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import logo from './logo.svg';
 import TOC from "./components/TOC"
 import Content from './components/Content';
@@ -6,8 +6,8 @@ import Subject from './components/Subject';
 import './App.css';
 
 function App() {
-  const state = {
-    mode:'welcome',
+
+  var state = {
     subject:{title:"REACT", sub:"For UI"},
     welcome:{title:'Welcome', desc:'Hello.  React!!'},
     contents:[
@@ -16,11 +16,13 @@ function App() {
       {id:3, title:"JavaScript", desc: "JavaScript is for interactive."}
     ]
   }
+  const [ mode, setMode] = useState('welcome');
+
   var _title, _desc = null;
-  if(state.mode === 'welcome'){
+  if( mode === 'welcome'){
     _title = state.welcome.title;
     _desc = state.welcome.desc;
-  } else if(state.mode === 'read'){
+  } else if( mode === 'read'){
     _title = state.contents[0].title;
     _desc = state.contents[0].desc;
   }
@@ -29,7 +31,8 @@ function App() {
       <img src={logo} className="App-logo" alt="logo" />
       <Subject 
         title={state.subject.title}
-        sub={state.subject.sub}>
+        sub={state.subject.sub}
+        setMode={setMode} >
        </Subject>
       <TOC data={state.contents}></TOC>
       <Content title={_title} desc={_desc}></Content>
