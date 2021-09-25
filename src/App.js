@@ -38,7 +38,12 @@ function App() {
           setMode('read');
         }}>
        </Subject>
-      <TOC data={state.contents}></TOC>
+      <TOC 
+         onChangePage={function(){
+         setMode('read');
+       }}
+       data={state.contents}>
+      </TOC>
       <Content title={_title} desc={_desc}></Content>
     </div>
   );
