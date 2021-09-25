@@ -8,6 +8,7 @@ import './App.css';
 function App() {
 
   var state = {
+    mode:'welcome',
     subject:{title:"REACT", sub:"For UI"},
     welcome:{title:'Welcome', desc:'Hello.  React!!'},
     contents:[
@@ -16,7 +17,7 @@ function App() {
       {id:3, title:"JavaScript", desc: "JavaScript is for interactive."}
     ]
   }
-  const [ mode, setMode] = useState('welcome');
+  const [mode, setMode] = useState('welcome');
 
   var _title, _desc = null;
   if( mode === 'welcome'){
@@ -32,7 +33,10 @@ function App() {
       <Subject 
         title={state.subject.title}
         sub={state.subject.sub}
-        setMode={setMode} >
+        setMode={setMode} 
+        onChangePage={function(){
+          setMode('read');
+        }}>
        </Subject>
       <TOC data={state.contents}></TOC>
       <Content title={_title} desc={_desc}></Content>
