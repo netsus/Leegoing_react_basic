@@ -1,7 +1,7 @@
 function Subject(props) {
   return(
     <header>
-      <h1>{props.title}</h1>
+      <h1><a href="/">{props.title}</a></h1>
       {props.sub}
     </header>
   );
