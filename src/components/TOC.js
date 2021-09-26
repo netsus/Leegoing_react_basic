@@ -9,9 +9,10 @@ function TOC(props) {
       <li key={data[i].id}>
         <a
          href={`/content/${data[i].id}`}
+         data-id={data[i].id}
          onClick={function(e){
            e.preventDefault();
-           props.onChangePage();
+           props.onChangePage(e.target.dataset.id);
          }}
         >{data[i].title}
         </a>

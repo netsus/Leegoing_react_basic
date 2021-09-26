@@ -17,15 +17,25 @@ function App() {
       {id:3, title:"JavaScript", desc: "JavaScript is for interactive."}
     ]
   }
+
   const [mode, setMode] = useState('welcome');
+  const [content_id, SetContent_id] = useState(1);
 
   var _title, _desc = null;
   if( mode === 'welcome'){
     _title = state.welcome.title;
     _desc = state.welcome.desc;
   } else if( mode === 'read'){
-    _title = state.contents[0].title;
-    _desc = state.contents[0].desc;
+    var i = 0;
+    while(i < state.contents.length){
+      var data = state.contents[i];
+      if(data.id === content_id){
+        _title = data.title;
+        _desc = data.desc;
+        break;
+      }
+      i++;
+    }
   }
   return (
     <div className="App">
@@ -35,12 +45,13 @@ function App() {
         sub={state.subject.sub}
         setMode={setMode} 
         onChangePage={function(){
-          setMode('read');
+          setMode('welcome');
         }}>
        </Subject>
       <TOC 
-         onChangePage={function(){
+         onChangePage={function(id){
          setMode('read');
+         SetContent_id(Number(id));
        }}
        data={state.contents}>
       </TOC>
