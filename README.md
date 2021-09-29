@@ -36,3 +36,11 @@
 
 * React Developer Tools : https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi?hl=ko
 --> 리액트의 컴포넌트를 웹페이지 Inspect에서 볼 수 있게해주는 크롬 확장 프로그램
+
+
+4. React의 Props vs State
+  1) Props : Read Only이고, 상위 컴포넌트에서 하위 컴포넌트로 전달되는 변수
+  ex) 군대에서 상급자가 하급자에게 내리는 명령 같은 것
+ 
+  2) State : 부모 컴포넌트의 상태. 하위 컴포넌트에서 이벤트를 통해 상위 컴포넌트로 전달되며, 그에 따라 State가 변화 될 수 있다.
+  ex) 하급자가 이벤트를 발생시키면, 상급자로부터 받은 함수를 통해 State를 변경할 수 있다.
