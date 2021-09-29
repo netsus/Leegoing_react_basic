@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import logo from './logo.svg';
 import TOC from "./components/TOC"
-import Content from './components/Content';
+import ReadContent from './components/ReadContent';
+import CreateContent from './components/CreateContent';
 import Subject from './components/Subject';
 import Control from './components/Control';
 import './App.css';
+
 
 function App() {
 
@@ -22,10 +24,11 @@ function App() {
   const [mode, setMode] = useState('welcome');
   const [content_id, SetContent_id] = useState(1);
 
-  var _title, _desc = null;
+  var _title, _desc, _article = null;
   if( mode === 'welcome'){
     _title = state.welcome.title;
     _desc = state.welcome.desc;
+    _article = <ReadContent title={_title} desc={_desc}></ReadContent>
   } else if( mode === 'read'){
     var i = 0;
     while(i < state.contents.length){
@@ -37,6 +40,9 @@ function App() {
       }
       i++;
     }
+    _article = <ReadContent title={_title} desc={_desc}></ReadContent>
+  } else if (mode === 'create'){
+    _article = <CreateContent></CreateContent>
   }
   return (
     <div className="App">
@@ -60,7 +66,7 @@ function App() {
        onChangeMode={function(_mode){
          setMode(_mode);
        }}></Control>
-      <Content title={_title} desc={_desc}></Content>
+      {_article}
     </div>
   );
 }

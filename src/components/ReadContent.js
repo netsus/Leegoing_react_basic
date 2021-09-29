@@ -1,5 +1,5 @@
 
-function Content(props) {
+function ReadContent(props) {
   return(
     <article>
       <h2>{props.title}</h2>
@@ -8,4 +8,4 @@ function Content(props) {
   );
 }
 
-export default Content;
+export default ReadContent;
