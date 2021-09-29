@@ -3,6 +3,7 @@ import logo from './logo.svg';
 import TOC from "./components/TOC"
 import Content from './components/Content';
 import Subject from './components/Subject';
+import Control from './components/Control';
 import './App.css';
 
 function App() {
@@ -55,6 +56,10 @@ function App() {
        }}
        data={state.contents}>
       </TOC>
+      <Control
+       onChangeMode={function(_mode){
+         setMode(_mode);
+       }}></Control>
       <Content title={_title} desc={_desc}></Content>
     </div>
   );
