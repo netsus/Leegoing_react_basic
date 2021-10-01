@@ -7,6 +7,10 @@ function CreateContent(props) {
       <form action="create_process" method="post"
        onSubmit={function(e){
          e.preventDefault();
+         props.addContent(
+           e.target.title.value,
+           e.target.desc.value
+           );
          alert('Submit!!!')
        }}
       >
