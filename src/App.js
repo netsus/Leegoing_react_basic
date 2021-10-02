@@ -9,7 +9,7 @@ import './App.css';
 
 
 function App() {
-
+  var max_content_id = 3;
   var state = {
     mode:'welcome',
     subject:{title:"REACT", sub:"For UI"},
@@ -23,6 +23,8 @@ function App() {
 
   const [mode, setMode] = useState('welcome');
   const [content_id, SetContent_id] = useState(1);
+  const [contents, SetContents] = useState(state.contents);
+
 
   var _title, _desc, _article = null;
   if( mode === 'welcome'){
@@ -31,8 +33,8 @@ function App() {
     _article = <ReadContent title={_title} desc={_desc}></ReadContent>
   } else if( mode === 'read'){
     var i = 0;
-    while(i < state.contents.length){
-      var data = state.contents[i];
+    while(i < contents.length){
+      var data = contents[i];
       if(data.id === content_id){
         _title = data.title;
         _desc = data.desc;
@@ -44,6 +46,9 @@ function App() {
   } else if (mode === 'create'){
     _article = <CreateContent addContent={function(_title, _desc){
       // add content to this.state.contents
+      max_content_id++;
+      const newElement = {id:max_content_id, title:_title, desc:_desc};
+      SetContents([...contents, newElement]);
       console.log(_title, _desc);
       console.log(this);
     }.bind(state)}></CreateContent>
@@ -64,7 +69,7 @@ function App() {
          setMode('read');
          SetContent_id(Number(id));
        }}
-       data={state.contents}>
+       data={contents}>
       </TOC>
       <Control
        onChangeMode={function(_mode){
