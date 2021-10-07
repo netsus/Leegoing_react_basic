@@ -1,6 +1,8 @@
 import React from "react";
 
+
 function TOC(props) {
+  console.log('TOC render');
   var lists = [];
   var data = props.data;
   var i = 0;
@@ -28,4 +30,10 @@ function TOC(props) {
   );
 }
 
-export default TOC;
+function dataequal(preProps, nextProps){
+  return (
+    preProps.data === nextProps.data
+  )
+}
+
+export default React.memo(TOC, dataequal);
