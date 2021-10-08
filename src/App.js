@@ -48,7 +48,9 @@ function App() {
       // add content to this.state.contents
       max_content_id++;
       const newElement = {id:max_content_id, title:_title, desc:_desc};
-      SetContents([...contents, newElement]);
+      var newContents = Array.from(contents);
+      newContents.push({id:max_content_id, title:_title, desc:_desc});
+      SetContents(newContents);
       console.log(_title, _desc);
       console.log(this);
     }.bind(state)}></CreateContent>
