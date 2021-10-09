@@ -3,6 +3,7 @@ import logo from './logo.svg';
 import TOC from "./components/TOC"
 import ReadContent from './components/ReadContent';
 import CreateContent from './components/CreateContent';
+import UpdateContent from './components/UpdateContent';
 import Subject from './components/Subject';
 import Control from './components/Control';
 import './App.css';
@@ -25,36 +26,54 @@ function App() {
   const [content_id, SetContent_id] = useState(1);
   const [contents, SetContents] = useState(state.contents);
 
-
-  var _title, _desc, _article = null;
-  if( mode === 'welcome'){
-    _title = state.welcome.title;
-    _desc = state.welcome.desc;
-    _article = <ReadContent title={_title} desc={_desc}></ReadContent>
-  } else if( mode === 'read'){
+  function getReadContent(){
     var i = 0;
     while(i < contents.length){
       var data = contents[i];
       if(data.id === content_id){
-        _title = data.title;
-        _desc = data.desc;
+        return data
         break;
       }
       i++;
     }
-    _article = <ReadContent title={_title} desc={_desc}></ReadContent>
-  } else if (mode === 'create'){
-    _article = <CreateContent addContent={function(_title, _desc){
-      // add content to this.state.contents
-      max_content_id++;
-      const newElement = {id:max_content_id, title:_title, desc:_desc};
-      var newContents = Array.from(contents);
-      newContents.push({id:max_content_id, title:_title, desc:_desc});
-      SetContents(newContents);
-      console.log(_title, _desc);
-      console.log(this);
-    }.bind(state)}></CreateContent>
   }
+
+  function getContent(){
+    var _title, _desc, _article = null;
+    if( mode === 'welcome'){
+      _title = state.welcome.title;
+      _desc = state.welcome.desc;
+      _article = <ReadContent title={_title} desc={_desc}></ReadContent>
+    } else if( mode === 'read'){
+      var _content = getReadContent();
+      _article = <ReadContent title={_content.title} desc={_content.desc}></ReadContent>
+    } else if (mode === 'create'){
+      _article = <CreateContent addContent={function(_title, _desc){
+        // add content to this.state.contents
+        max_content_id++;
+        const newElement = {id:max_content_id, title:_title, desc:_desc};
+        var newContents = Array.from(contents);
+        newContents.push({id:max_content_id, title:_title, desc:_desc});
+        SetContents(newContents);
+        console.log(_title, _desc);
+        console.log(this);
+      }.bind(state)}></CreateContent>
+    } else if (mode === 'update'){
+      var _content = getReadContent();
+      _article = <UpdateContent data={_content} addContent={function(_title, _desc){
+        // add content to this.state.contents
+        max_content_id++;
+        const newElement = {id:max_content_id, title:_title, desc:_desc};
+        var newContents = Array.from(contents);
+        newContents.push({id:max_content_id, title:_title, desc:_desc});
+        SetContents(newContents);
+        console.log(_title, _desc);
+        console.log(this);
+      }.bind(state)}></UpdateContent>
+    }
+    return _article;
+  }
+
   return (
     <div className="App">
       <img src={logo} className="App-logo" alt="logo" />
@@ -77,7 +96,7 @@ function App() {
        onChangeMode={function(_mode){
          setMode(_mode);
        }}></Control>
-      {_article}
+      {getContent()}
     </div>
   );
 }
