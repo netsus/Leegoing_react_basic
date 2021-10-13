@@ -31,7 +31,7 @@ function App() {
     while(i < contents.length){
       var data = contents[i];
       if(data.id === content_id){
-        return data
+        return data;
         break;
       }
       i++;
@@ -51,7 +51,7 @@ function App() {
       _article = <CreateContent addContent={function(_title, _desc){
         // add content to this.state.contents
         max_content_id++;
-        const newElement = {id:max_content_id, title:_title, desc:_desc};
+        // const newElement = {id:max_content_id, title:_title, desc:_desc};
         var newContents = Array.from(contents);
         newContents.push({id:max_content_id, title:_title, desc:_desc});
         SetContents(newContents);
@@ -59,17 +59,14 @@ function App() {
         console.log(this);
       }.bind(state)}></CreateContent>
     } else if (mode === 'update'){
-      var _content = getReadContent();
-      _article = <UpdateContent data={_content} addContent={function(_title, _desc){
+        _content = getReadContent();
+        _article = <UpdateContent data={_content} addContent={function(_title, _desc){
         // add content to this.state.contents
         max_content_id++;
-        const newElement = {id:max_content_id, title:_title, desc:_desc};
-        var newContents = Array.from(contents);
+        var newContents = Array.from(_content);
         newContents.push({id:max_content_id, title:_title, desc:_desc});
         SetContents(newContents);
-        console.log(_title, _desc);
-        console.log(this);
-      }.bind(state)}></UpdateContent>
+      }}></UpdateContent>
     }
     return _article;
   }
