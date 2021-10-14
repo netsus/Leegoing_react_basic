@@ -11,7 +11,6 @@ function CreateContent(props) {
            e.target.title.value,
            e.target.desc.value
            );
-         alert('Submit!!!')
        }}
       >
         <p><input type="text" name="title" placeholder="title" /></p>

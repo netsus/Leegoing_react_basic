@@ -51,21 +51,27 @@ function App() {
       _article = <CreateContent addContent={function(_title, _desc){
         // add content to this.state.contents
         max_content_id++;
-        // const newElement = {id:max_content_id, title:_title, desc:_desc};
         var newContents = Array.from(contents);
         newContents.push({id:max_content_id, title:_title, desc:_desc});
         SetContents(newContents);
-        console.log(_title, _desc);
-        console.log(this);
-      }.bind(state)}></CreateContent>
+        setMode('read');
+        SetContent_id(max_content_id);
+      }}></CreateContent>
     } else if (mode === 'update'){
         _content = getReadContent();
-        _article = <UpdateContent data={_content} addContent={function(_title, _desc){
-        // add content to this.state.contents
-        max_content_id++;
-        var newContents = Array.from(_content);
-        newContents.push({id:max_content_id, title:_title, desc:_desc});
-        SetContents(newContents);
+        _article = <UpdateContent data={_content} addContent={
+          function(_id, _title, _desc){
+            var _contents = Array.from(contents);
+            var i = 0;
+            while( i < _contents.length){
+              if (_contents[i].id === _id){
+                _contents[i] = {id:_id, title:_title, desc:_desc};
+                break;
+              }
+              i++;
+            }
+            SetContents(_contents);
+            setMode('read');
       }}></UpdateContent>
     }
     return _article;

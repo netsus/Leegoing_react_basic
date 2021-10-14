@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 
 function UpdateContent(props) {
+  const content_id = props.data.id;
   const [title, setTitle] = useState(props.data.title);
   const [desc, setDesc] = useState(props.data.desc);
 
@@ -13,12 +14,14 @@ function UpdateContent(props) {
        onSubmit={function(e){
          e.preventDefault();
          props.addContent(
-           e.target.title.value,
-           e.target.desc.value
+           content_id,
+           title,
+           desc
            );
          alert('Submit!!!')
        }}
       >
+        <input type="hidden" name="id" value={content_id} />
         <p>
           <input 
             type="text" 
