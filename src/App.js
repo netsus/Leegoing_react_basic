@@ -4,13 +4,13 @@ import TOC from "./components/TOC"
 import ReadContent from './components/ReadContent';
 import CreateContent from './components/CreateContent';
 import UpdateContent from './components/UpdateContent';
+import DeleteContent from './components/DeleteContent';
 import Subject from './components/Subject';
 import Control from './components/Control';
 import './App.css';
 
 
 function App() {
-  var max_content_id = 3;
   var state = {
     mode:'welcome',
     subject:{title:"REACT", sub:"For UI"},
@@ -25,6 +25,7 @@ function App() {
   const [mode, setMode] = useState('welcome');
   const [content_id, SetContent_id] = useState(1);
   const [contents, SetContents] = useState(state.contents);
+  var max_content_id = Math.max.apply(Math, contents.map(function(o) { return o.id; }));
 
   function getReadContent(){
     var i = 0;
@@ -51,6 +52,7 @@ function App() {
       _article = <CreateContent addContent={function(_title, _desc){
         // add content to this.state.contents
         max_content_id++;
+        console.log(max_content_id);
         var newContents = Array.from(contents);
         newContents.push({id:max_content_id, title:_title, desc:_desc});
         SetContents(newContents);
@@ -73,6 +75,15 @@ function App() {
             SetContents(_contents);
             setMode('read');
       }}></UpdateContent>
+    } else if (mode === 'delete'){
+      _content = getReadContent();
+      _article = <DeleteContent data={_content} deleteContent={
+        function(_id, _title, _desc){
+          var _contents = contents.filter( id => id !== _id)
+          SetContents(_contents);
+          setMode('read');
+    }}></DeleteContent>
+
     }
     return _article;
   }

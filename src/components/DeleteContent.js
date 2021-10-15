@@ -7,11 +7,12 @@ function UpdateContent(props) {
 
   return(
     <article>
-      <h2>Update</h2>
+      <h2>Delete</h2>
+      
       <form action="create_process" method="post"
        onSubmit={function(e){
          e.preventDefault();
-         props.addContent(
+         props.deleteContent(
            content_id,
            title,
            desc
