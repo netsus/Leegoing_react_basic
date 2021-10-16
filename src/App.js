@@ -4,7 +4,6 @@ import TOC from "./components/TOC"
 import ReadContent from './components/ReadContent';
 import CreateContent from './components/CreateContent';
 import UpdateContent from './components/UpdateContent';
-import DeleteContent from './components/DeleteContent';
 import Subject from './components/Subject';
 import Control from './components/Control';
 import './App.css';
@@ -75,16 +74,7 @@ function App() {
             SetContents(_contents);
             setMode('read');
       }}></UpdateContent>
-    } else if (mode === 'delete'){
-      _content = getReadContent();
-      _article = <DeleteContent data={_content} deleteContent={
-        function(_id, _title, _desc){
-          var _contents = contents.filter( id => id !== _id)
-          SetContents(_contents);
-          setMode('read');
-    }}></DeleteContent>
-
-    }
+    } 
     return _article;
   }
 
@@ -108,7 +98,23 @@ function App() {
       </TOC>
       <Control
        onChangeMode={function(_mode){
-         setMode(_mode);
+         if (_mode === 'delete'){
+           var _contents = Array.from(contents);
+           if(window.confirm('really?')){
+             for (const i in [...Array(_contents.length).keys()]) {
+               if (_contents[i].id === content_id ) {
+                 _contents.splice(i,1);
+                 break;                                 
+               }
+             }
+             SetContents(_contents);
+             setMode('welcome');
+             alert('Delete Complete!');
+           }
+
+         } else {
+           setMode(_mode);
+         }
        }}></Control>
       {getContent()}
     </div>
