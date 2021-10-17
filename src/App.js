@@ -24,7 +24,12 @@ function App() {
   const [mode, setMode] = useState('welcome');
   const [content_id, SetContent_id] = useState(1);
   const [contents, SetContents] = useState(state.contents);
-  var max_content_id = Math.max.apply(Math, contents.map(function(o) { return o.id; }));
+  if (contents.length > 0){
+    var max_content_id = Math.max.apply(Math, contents.map(function(o) { return o.id; }));
+  } else {
+    var max_content_id = 0;
+  }
+  
 
   function getReadContent(){
     var i = 0;
